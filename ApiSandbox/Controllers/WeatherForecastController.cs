@@ -14,9 +14,9 @@ namespace AspNetSandbox.Controllers
     public class WeatherForecastController : ControllerBase
     {
         private const float KELVIN_CONST = 273.15f;
-      
 
-    
+
+
         [HttpGet]
         public IEnumerable<WeatherForecast> Get()
         {
@@ -27,7 +27,7 @@ namespace AspNetSandbox.Controllers
             Console.WriteLine(response.Content);
 
             return ConvertResponseToWeatherForecast(response.Content);
-        
+
         }
 
         public IEnumerable<WeatherForecast> ConvertResponseToWeatherForecast(string content, int days = 5)
@@ -35,7 +35,7 @@ namespace AspNetSandbox.Controllers
 
             var json = JObject.Parse(content);
             var rng = new Random();
-         
+
 
             return Enumerable.Range(1, days).Select(index =>
             {
@@ -60,6 +60,58 @@ namespace AspNetSandbox.Controllers
             return (int)Math.Round(jsonDailyForecast["temp"].Value<float>("day") - KELVIN_CONST);
         }
 
-        ////https://api.openweathermap.org/data/2.5/onecall?lat=46.652010&lon=24.484990&exclude=hourly,minutely&appid=3b5027203e63534b989ac149d0c2ce31
+    }
+
+    //WeatherForecast for city 
+    public class WeatherForecastControllerCity : ControllerBase
+    {
+        private const float KELVIN_CONST = 273.15f;
+
+        [HttpGet]
+        public IEnumerable<WeatherForecast> Get()
+        {
+            var client = new RestClient("https://api.openweathermap.org/data/2.5/weather?lat=52.5244&lon=13.4105&appid=3b5027203e63534b989ac149d0c2ce31");
+            client.Timeout = -1;
+            var request = new RestRequest(Method.GET);
+            IRestResponse response = client.Execute(request);
+            Console.WriteLine(response.Content);
+
+            return ConvertResponseToWeatherForecastCity(response.Content);
+
+        }
+        public IEnumerable<WeatherForecast> ConvertResponseToWeatherForecastCity(string content, int days = 5)
+        {
+
+            var jsonCity = JObject.Parse(content);
+            var rng = new Random();
+
+
+            return Enumerable.Range(1, days).Select(index =>
+            {
+
+                //var jsonDailyForecast = jsonCity["daily"][index];
+                //var unixDateTime = jsonDailyForecast.Value<long>("dt");
+                //var weatherSummary = jsonDailyForecast["weather"][0].Value<string>("main");
+                var nameCity = jsonCity["name"];
+                var lat = jsonCity["coord"]["lat"];
+                var lon = jsonCity["coord"]["lon"];
+
+
+                return new WeatherForecast
+                {
+                    //Date = DateTimeOffset.FromUnixTimeSeconds(unixDateTime).Date,
+                    //TemperatureC = ExtractCelsiusTemperatureFromDailyWeather(jsonDailyForecast),
+                    //Summary = weatherSummary
+                   latitude = lat,
+                   longitude = lon,
+                   name = nameCity
+                };
+            })
+            .ToArray();
+        }
+        private static int ExtractCelsiusTemperatureFromDailyWeather(JToken jsonDailyForecast)
+        {
+            return (int)Math.Round(jsonDailyForecast["temp"].Value<float>("day") - KELVIN_CONST);
+        }
     }
 }
