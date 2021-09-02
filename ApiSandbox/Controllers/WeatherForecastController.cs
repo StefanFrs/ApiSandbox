@@ -57,7 +57,7 @@ namespace AspNetSandbox.Controllers
 
         private static int ExtractCelsiusTemperatureFromDailyWeather(JToken jsonDailyForecast)
         {
-            return (int)Math.Round((jsonDailyForecast["temp"][0].Value<float>("day")) - KELVIN_CONST);
+            return (int)Math.Round(jsonDailyForecast["temp"].Value<float>("day") - KELVIN_CONST);
         }
 
         ////https://api.openweathermap.org/data/2.5/onecall?lat=46.652010&lon=24.484990&exclude=hourly,minutely&appid=3b5027203e63534b989ac149d0c2ce31
