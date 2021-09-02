@@ -13,16 +13,10 @@ namespace AspNetSandbox.Controllers
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
     {
-        private static readonly string[] Summaries = new[]
-        {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
+        private const float KELVIN_CONST = 273.15f;
+      
 
-        public WeatherForecastController()
-        {
-            
-        }
-
+    
         [HttpGet]
         public IEnumerable<WeatherForecast> Get()
         {
@@ -33,33 +27,39 @@ namespace AspNetSandbox.Controllers
             Console.WriteLine(response.Content);
 
             return ConvertResponseToWeatherForecast(response.Content);
-
-            //var rng = new Random();
-
-            //return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            //{
-            //    Date = DateTime.Now.AddDays(index),
-            //    TemperatureC = rng.Next(-20, 55),
-            //    Summary = Summaries[rng.Next(Summaries.Length)]
-            //})
-            //.ToArray();
-           
         
         }
 
-        public IEnumerable<WeatherForecast> ConvertResponseToWeatherForecast(string content)
+        public IEnumerable<WeatherForecast> ConvertResponseToWeatherForecast(string content, int days = 5)
         {
-            var json = JObject.Parse(content);
 
+            var json = JObject.Parse(content);
             var rng = new Random();
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
+         
+
+            return Enumerable.Range(1, days).Select(index =>
             {
-                Date = DateTime.Now.AddDays(index),
-                TemperatureC = rng.Next(-20, 55),
-                Summary = Summaries[rng.Next(Summaries.Length)]
+
+                var jsonDailyForecast = json["daily"][index];
+                var unixDateTime = jsonDailyForecast.Value<long>("dt");
+                var weatherSummary = jsonDailyForecast["weather"][0].Value<string>("main");
+
+
+                return new WeatherForecast
+                {
+                    Date = DateTimeOffset.FromUnixTimeSeconds(unixDateTime).Date,
+                    TemperatureC = ExtractCelsiusTemperatureFromDailyWeather(jsonDailyForecast),
+                    Summary = weatherSummary
+                };
             })
             .ToArray();
         }
+
+        private static int ExtractCelsiusTemperatureFromDailyWeather(JToken jsonDailyForecast)
+        {
+            return (int)Math.Round((jsonDailyForecast["temp"][0].Value<float>("day")) - KELVIN_CONST);
+        }
+
         ////https://api.openweathermap.org/data/2.5/onecall?lat=46.652010&lon=24.484990&exclude=hourly,minutely&appid=3b5027203e63534b989ac149d0c2ce31
     }
 }
