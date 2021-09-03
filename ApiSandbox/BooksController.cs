@@ -40,7 +40,6 @@ namespace ApiSandbox
             return books;
         }
 
-
         // GET api/<BooksController>/5
         [HttpGet("{id}")]
         public Book Get(int id)
