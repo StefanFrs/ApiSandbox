@@ -16,11 +16,21 @@ namespace ApiSandbox
         public BooksController()
         {
             books = new Book[2];
-            books[0] = new Book();
-            books[0].id = 0;
-            books[0].Title = "Psyho ABC";
-            books[0].Author = "John";
-            books[0].Language= "Romanian";
+            books[0] = new Book
+            {
+                id = 1,
+                Title = "Psyho ABC",
+                Author = "John",
+                Language = "Romanian"
+            };
+
+            books[0] = new Book
+            {
+                id = 2,
+                Title = "The art of not giving a f..",
+                Author = "Tom example",
+                Language = "English"
+            };
 
         }
         // GET: api/<BooksController>
