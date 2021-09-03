@@ -29,6 +29,7 @@ namespace AspNetSandbox.Controllers
             return ConvertResponseToWeatherForecast(response.Content);
 
         }
+        [NonAction]
 
         public IEnumerable<WeatherForecast> ConvertResponseToWeatherForecast(string content, int days = 5)
         {
@@ -79,6 +80,7 @@ namespace AspNetSandbox.Controllers
             return ConvertResponseToWeatherForecastCity(response.Content);
 
         }
+        [NonAction]
         public IEnumerable<WeatherForecast> ConvertResponseToWeatherForecastCity(string content, int days = 5)
         {
 
@@ -89,9 +91,6 @@ namespace AspNetSandbox.Controllers
             return Enumerable.Range(1, days).Select(index =>
             {
 
-                //var jsonDailyForecast = jsonCity["daily"][index];
-                //var unixDateTime = jsonDailyForecast.Value<long>("dt");
-                //var weatherSummary = jsonDailyForecast["weather"][0].Value<string>("main");
                 var nameCity = jsonCity["name"];
                 var lat = jsonCity["coord"]["lat"];
                 var lon = jsonCity["coord"]["lon"];
@@ -99,9 +98,7 @@ namespace AspNetSandbox.Controllers
 
                 return new WeatherForecast
                 {
-                    //Date = DateTimeOffset.FromUnixTimeSeconds(unixDateTime).Date,
-                    //TemperatureC = ExtractCelsiusTemperatureFromDailyWeather(jsonDailyForecast),
-                    //Summary = weatherSummary
+                   
                    latitude = lat,
                    longitude = lon,
                    name = nameCity
