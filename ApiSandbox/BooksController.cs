@@ -24,7 +24,7 @@ namespace ApiSandbox
                 Language = "Romanian"
             };
 
-            books[0] = new Book
+            books[1] = new Book
             {
                 id = 2,
                 Title = "The art of not giving a f..",
@@ -40,13 +40,19 @@ namespace ApiSandbox
             return books;
         }
 
-        // GET api/<BooksController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        private bool SomeFunction(Book book)
         {
-            return "value";
+            return book.id == 1;
         }
 
+        // GET api/<BooksController>/5
+        [HttpGet("{id}")]
+        public Book Get(int id)
+        {
+            return books.Single(SomeFunction);
+        }
+
+     
         // POST api/<BooksController>
         [HttpPost]
         public void Post([FromBody] string value)
