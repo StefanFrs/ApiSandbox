@@ -18,7 +18,7 @@ namespace ApiSandbox
             books = new Book[2];
             books[0] = new Book
             {
-                id = 1,
+                Id = 1,
                 Title = "Psyho ABC",
                 Author = "John",
                 Language = "Romanian"
@@ -26,7 +26,7 @@ namespace ApiSandbox
 
             books[1] = new Book
             {
-                id = 2,
+                Id = 2,
                 Title = "The art of not giving a f..",
                 Author = "Tom example",
                 Language = "English"
@@ -40,16 +40,12 @@ namespace ApiSandbox
             return books;
         }
 
-        private bool SomeFunction(Book book)
-        {
-            return book.id == 1;
-        }
 
         // GET api/<BooksController>/5
         [HttpGet("{id}")]
         public Book Get(int id)
         {
-            return books.Single(SomeFunction);
+            return books.Single(book=> book.Id == id);
         }
 
      
