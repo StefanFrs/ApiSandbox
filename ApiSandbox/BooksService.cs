@@ -44,18 +44,20 @@ namespace ApiSandbox
 
         public void Post(Book value)
         {
-            int id = books.Count + 1;
             //Random rnd = new Random();
             //int id = rnd.Next(1, 1000);
+            CountMemory.count = CountMemory.count + 1;
+            int id = CountMemory.count;
             value.Id = id;
             books.Add(value);
         }
 
         // PUT api/<BooksController>/5
 
-        public void Put(int id, string value)
+        public void Put(int id, Book value)
         {
-          
+            var index = books.FindIndex(book => book.Id == id);
+            books[index] = value;
         }
 
         // DELETE api/<BooksController>/5
@@ -64,5 +66,10 @@ namespace ApiSandbox
         {
             books.Remove(Get(id));
         }
+    }
+    public static class CountMemory
+    {
+        public static int count = 2;
+
     }
 }

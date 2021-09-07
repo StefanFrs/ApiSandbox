@@ -8,6 +8,6 @@ namespace ApiSandbox
         IEnumerable<Book> Get();
         Book Get(int id);
         void Post(Book value);
-        void Put(int id, string value);
+        void Put(int id, Book value);
     }
 }

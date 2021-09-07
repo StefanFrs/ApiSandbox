@@ -27,7 +27,7 @@ namespace ApiSandbox.tests
                 Language = "Romanian"
             });
 
-            booksService.Delete(3);
+            booksService.Delete(2);
             booksService.Post(new Book
             {
                 Title = "The art of not giving a f..",
@@ -36,7 +36,7 @@ namespace ApiSandbox.tests
             });
 
             //Assert
-            Assert.Equal("The art of not giving a f..", booksService.Get(3).Title);
+            Assert.Equal("Psyho ABC", booksService.Get(3).Title);
         }
     }
 }
