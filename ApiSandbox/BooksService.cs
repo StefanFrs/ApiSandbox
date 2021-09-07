@@ -45,6 +45,8 @@ namespace ApiSandbox
         public void Post(Book value)
         {
             int id = books.Count + 1;
+            //Random rnd = new Random();
+            //int id = rnd.Next(1, 1000);
             value.Id = id;
             books.Add(value);
         }
@@ -53,7 +55,7 @@ namespace ApiSandbox
 
         public void Put(int id, string value)
         {
-
+          
         }
 
         // DELETE api/<BooksController>/5

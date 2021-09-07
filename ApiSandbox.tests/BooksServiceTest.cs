@@ -3,39 +3,40 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AspNetSandbox;
+using AspNetSandbox.Controllers;
+using System.IO;
+using Xunit;
 
 namespace ApiSandbox.tests
 {
-    class BooksServiceTest
+    public class BooksServiceTest
     {
-        public void ShouldHaveLondonCoordinates()
+        [Fact]
+        public static void ShouldHaveLondonCoordinates()
         {
             // Assume
             var booksService = new BooksService();
-          
+           
 
             // Act
            booksService.Post(new Book
-           
             {
-                Id = 1,
                 Title = "Psyho ABC",
                 Author = "John",
                 Language = "Romanian"
             });
 
-            booksService.Service.Delete(2);
+            booksService.Delete(3);
             booksService.Post(new Book
             {
-                Id = 2,
                 Title = "The art of not giving a f..",
                 Author = "Tom example",
                 Language = "English"
             });
 
-            Assert.Equal("syho ABC", booksService.Get(3).Test);
-
-
+            //Assert
+            Assert.Equal("The art of not giving a f..", booksService.Get(3).Title);
         }
     }
 }
