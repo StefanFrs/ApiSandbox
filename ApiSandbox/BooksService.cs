@@ -38,16 +38,14 @@ namespace ApiSandbox
 
         public Book Get(int id)
         {
-            return books.Single(book => book.Id == id);
+            return books.Single(_ => _.Id == id);
         }
 
 
         public void Post(Book value)
         {
-            //Random rnd = new Random();
-            //int id = rnd.Next(1, 1000);
-            CountMemory.count = CountMemory.count + 1;
-            int id = CountMemory.count;
+           
+            int id = CountMemory.GetNewId();
             value.Id = id;
             books.Add(value);
         }
@@ -71,5 +69,9 @@ namespace ApiSandbox
     {
         public static int count = 2;
 
+        internal static int GetNewId()
+        {
+            return ++count;
+        }
     }
 }
