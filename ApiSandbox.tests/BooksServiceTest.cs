@@ -17,14 +17,13 @@ namespace ApiSandbox.tests
         {
             // Assume
             var booksService = new BooksService();
-           
 
             // Act
            booksService.Post(new Book
             {
                 Title = "Psyho ABC",
                 Author = "John",
-                Language = "Romanian"
+                Language = "Romanian",
             });
 
             booksService.Delete(2);
@@ -32,10 +31,10 @@ namespace ApiSandbox.tests
             {
                 Title = "The art of not giving a f..",
                 Author = "Tom example",
-                Language = "English"
+                Language = "English",
             });
 
-            //Assert
+            // Assert
             Assert.Equal("Psyho ABC", booksService.Get(3).Title);
         }
     }

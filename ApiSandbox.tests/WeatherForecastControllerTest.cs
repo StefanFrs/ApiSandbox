@@ -6,6 +6,9 @@ using Xunit;
 
 namespace ApiSandbox.Tests
 {
+    /// <summary>
+    /// Test Suite for WeatherForecastController.
+    /// </summary>
     public class WeatherForecastControllerTest
     {
         [Fact]
@@ -24,8 +27,6 @@ namespace ApiSandbox.Tests
             Assert.Equal("Clear", weatherForecastForTomorrow.Summary);
             Assert.Equal(19, ((WeatherForecast[])output)[0].TemperatureC);
             Assert.Equal(new DateTime(2021,9,3), weatherForecastForTomorrow.Date);
-
-
         }
 
         [Fact]
