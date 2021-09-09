@@ -2,6 +2,7 @@
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
+using ApiSandbox.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;

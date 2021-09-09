@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ApiSandbox
+namespace ApiSandbox.Models
 {
     public class Book
     {

@@ -7,6 +7,7 @@ using AspNetSandbox;
 using AspNetSandbox.Controllers;
 using System.IO;
 using Xunit;
+using ApiSandbox.Models;
 
 namespace ApiSandbox.tests
 {
