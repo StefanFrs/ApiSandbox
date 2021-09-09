@@ -30,16 +30,19 @@ namespace ApiSandbox
 
         }
 
+        /// <inheritdoc/>
         public IEnumerable<Book> Get()
         {
             return this.books;
         }
 
+        /// <inheritdoc/>
         public Book Get(int id)
         {
             return this.books.Single(_ => _.Id == id);
         }
 
+        /// <inheritdoc/>
         public void Post(Book value)
         {
             int id = CountMemory.GetNewId();
@@ -48,6 +51,8 @@ namespace ApiSandbox
         }
 
         // PUT api/<BooksController>/5
+
+        /// <inheritdoc/>
         public void Put(int id, Book value)
         {
             var index = this.books.FindIndex(book => book.Id == id);
@@ -56,9 +61,10 @@ namespace ApiSandbox
 
         // DELETE api/<BooksController>/5
 
+        /// <inheritdoc/>
         public void Delete(int id)
         {
-            this.books.Remove(Get(id));
+            this.books.Remove(this.Get(id));
         }
     }
 
