@@ -15,12 +15,11 @@ namespace ApiSandbox.Tests
         public void ConvertResponseToWeatherForecastTest()
         {
             // Assume
-            string content = LoadJsonFromResource();
+            string content = this.LoadJsonFromResource();
             var controller = new WeatherForecastController();
 
             // Act
             var output = controller.ConvertResponseToWeatherForecast(content);
-
 
             // Assert
             var weatherForecastForTomorrow = ((WeatherForecast[])output)[0];
@@ -33,7 +32,7 @@ namespace ApiSandbox.Tests
         public void ConvertResponseToWeatherForecastTestAfterTomorrow()
         {
             // Assume
-            string content = LoadJsonFromResource();
+            string content = this.LoadJsonFromResource();
             var controller = new WeatherForecastController();
 
             // Act
@@ -44,9 +43,8 @@ namespace ApiSandbox.Tests
             Assert.Equal("Clouds", weatherForecastAfterTomorrow.Summary);
             Assert.Equal(19, ((WeatherForecast[])output)[0].TemperatureC);
             Assert.Equal(new DateTime(2021, 9, 5), weatherForecastAfterTomorrow.Date);
-
-
         }
+
         private string LoadJsonFromResource()
         {
             var assembly = this.GetType().Assembly;

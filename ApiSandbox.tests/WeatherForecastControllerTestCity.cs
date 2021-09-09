@@ -8,12 +8,11 @@ namespace ApiSandbox.Tests
 {
     public class WeatherForecastControllerTestCity
     {
-    
         [Fact]
         public void ConvertResponseToWeatherForecastTestAfterTomorrow()
         {
             // Assume
-            string content = LoadJsonFromResource();
+            string content = this.LoadJsonFromResource();
             var controller = new WeatherForecastControllerCity();
 
             // Act
@@ -23,9 +22,10 @@ namespace ApiSandbox.Tests
             // Assert
             Assert.Equal("13.4113", weatherForecastForTomorrow.longitude);
             Assert.Equal("52.5234", weatherForecastForTomorrow.latitude);
-            //Assert.Equal(19, ((WeatherForecast[])output)[0].TemperatureC);
-           
+
+            // Assert.Equal(19, ((WeatherForecast[])output)[0].TemperatureC);
         }
+
         private string LoadJsonFromResource()
         {
             var assembly = this.GetType().Assembly;
