@@ -1,0 +1,85 @@
+﻿// <copyright file="BooksController.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
+
+using ApiSandbox.Models;
+using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+namespace ApiSandbox.Controllers
+{
+    /// <summary>
+    ///   <br />
+    /// </summary>
+    [Route("api/[controller]")]
+    [ApiController]
+    public class BooksController : ControllerBase
+    
+     private readonly ApplicationDbContext _context;
+    {
+        private readonly IBooksService booksService;
+
+        public BooksController(IBooksService booksService)
+        {
+            _context = context;
+        }
+
+        // GET: api/<BooksController>
+        [HttpGet]
+        public sync Task<IActionResult> Get()
+        {
+            return this.booksService.Get();
+        }
+
+        // GET api/<BooksController>/5
+
+        /// <summary>Gets the specified book by id.</summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns>book object.</returns>
+        [HttpGet("{id}")]
+        public async Task<IActionResult> Get(int id)
+        {
+            try
+            {
+            	  var book = await _context.Book
+                .FirstOrDefaultAsync(m => m.Id == id);
+                return this.Ok(this.booksService.Get(id));
+            }
+            catch (Exception e)
+            {
+                return this.NotFound();
+            }
+        }
+
+        // POST api/<BooksController>
+        [HttpPost]
+        public void Post([FromBody] Book value)
+        {
+            this.booksService.Post(value);
+ if (ModelState.IsValid)
+            {
+                _context.Add(book);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+        }
+
+        // PUT api/<BooksController>/5
+        [HttpPut("{id}")]
+        public void Put(int id, [FromBody] Book value)
+        {
+            this.booksService.Put(id, value);
+        }
+
+        // DELETE api/<BooksController>/5
+        [HttpDelete("{id}")]
+        public void Delete(int id)
+        {
+            this.booksService.Delete(id);
+        }
+    }
+}
