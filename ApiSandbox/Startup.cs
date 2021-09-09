@@ -83,7 +83,7 @@ namespace ApiSandbox
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-				endpoints.MapControllerRoute(
+				endpoints.MapControllerRoute(  
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
