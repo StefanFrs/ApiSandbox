@@ -8,17 +8,17 @@ docker build -t web_stefan .
 to run
 
 ```
-docker run -d -p 8081:80 --name web_container_stefan web_stefan
+docker run -d -p 8081:80 --name web_container_stefanV2 web_stefan
 ```
 
 to stop container
 ```
-docker stop web_container_stefan
+docker stop web_container_stefanV2
 ```
 
 to remove container
 ```
-docker rm web_container_stefan
+docker rm web_container_stefanV2
 ```
 
 ## Deploy to heroku
@@ -36,10 +36,10 @@ heroku container:login
 
 Push container
 ```
-heroku container:push -a api-sandbox-first-app web
+heroku container:push -a api-book-app web
 ```
 
 Release the container
 ```
-heroku container:release -a api-sandbox-first-app web
+heroku container:release -a api-book-app web
 ```

@@ -19,7 +19,7 @@ namespace ApiSandbox.tests
             var booksService = new BooksService();
 
             // Act
-           booksService.Post(new Book
+            booksService.Post(new Book
             {
                 Title = "Psyho ABC",
                 Author = "John",
