@@ -1,102 +1,75 @@
-﻿// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+﻿// <copyright file="BooksController.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
-    using System;
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
-    using ApiSandbox.Data;
-    using ApiSandbox.Models;
-    using Microsoft.AspNetCore.Mvc;
-    using Microsoft.EntityFrameworkCore;
+using ApiSandbox.Models;
+using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-    namespace AspNetSandBox.Controllers
+// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+namespace ApiSandbox.Controllers
 {
-    /// <summary>BooksController .
-    /// Exposes api CRUD operations for books.</summary>
+    /// <summary>
+    ///   <br />
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class BooksController : ControllerBase
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IBooksService booksService;
 
-        /// <summary>Initializes a new instance of the <see cref="BooksController" /> class.</summary>
-        public BooksController(ApplicationDbContext context)
+        public BooksController(IBooksService booksService)
         {
-            _context = context;
+            this.booksService = booksService;
         }
 
-        // GET: api/<ValuesController>
-
-        /// <summary>Gets all the instances of books.</summary>
-        /// <returns>Enumerable of book objects.<br /></returns>
+        // GET: api/<BooksController>
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public IEnumerable<Book> Get()
         {
-            return Ok(await _context.Book.ToListAsync());
+            return this.booksService.Get();
         }
 
-        // GET api/<ValuesController>/5
+        // GET api/<BooksController>/5
 
         /// <summary>Gets the specified book by id.</summary>
         /// <param name="id">The identifier.</param>
         /// <returns>book object.</returns>
         [HttpGet("{id}")]
-        public async Task<IActionResult> Get(int id)
+        public ActionResult Get(int id)
         {
             try
             {
-                var book = await _context.Book
-                .FirstOrDefaultAsync(m => m.Id == id);
-                return Ok(book);
+                return this.Ok(this.booksService.Get(id));
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                return NotFound();
+                return this.NotFound();
             }
         }
 
-        // POST api/<ValuesController>
-
-        /// <summary>Posts the specified book.</summary>
-        /// <param name="book">The value.</param>
+        // POST api/<BooksController>
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] Book book)
+        public void Post([FromBody] Book value)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(book);
-                await _context.SaveChangesAsync();
-                return Ok();
-            }
-            else
-            {
-                return BadRequest();
-            }
+            this.booksService.Post(value);
         }
 
-        // PUT api/<ValuesController>/
-
-        /// <summary>Updates the book at the specified id with the fields of value.</summary>
-        /// <param name="id">The identifier.</param>
-        /// <param name="book">The value.</param>
+        // PUT api/<BooksController>/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, [FromBody] Book book)
+        public void Put(int id, [FromBody] Book value)
         {
-            _context.Update(book);
-            await _context.SaveChangesAsync();
-            return Ok();
+            this.booksService.Put(id, value);
         }
 
-        // DELETE api/<ValuesController>/5
-
-        /// <summary>Deletes the book found at the specified identifier.</summary>
-        /// <param name="id">The identifier.</param>
+        // DELETE api/<BooksController>/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
+        public void Delete(int id)
         {
-            var book = await _context.Book.FindAsync(id);
-            _context.Book.Remove(book);
-            await _context.SaveChangesAsync();
-            return Ok();
+            this.booksService.Delete(id);
         }
     }
 }
