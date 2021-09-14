@@ -1,81 +1,68 @@
-﻿using ApiSandbox.Models;
-using System;
+﻿using ApiSandbox;
+using ApiSandbox.Models;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
-namespace ApiSandbox
+namespace AspNetSandbox.Services
 {
     public class BooksInMemoryRepository : IBooksRepository
     {
+        private static int id;
         private List<Book> books;
 
         public BooksInMemoryRepository()
         {
-            this.books = new List<Book>();
-            this.books.Add(new Book
+            books = new List<Book>();
+            books.Add(new Book
             {
                 Id = 1,
-                Title = "Psyho ABC",
-                Author = "John",
+                Title = "Sapiens - o scurta istorie a omenirii",
+                Author = "Yuval Noah Harari",
                 Language = "Romanian",
             });
 
-            this.books.Add(new Book
+            books.Add(new Book
             {
                 Id = 2,
-                Title = "The art of not giving a f..",
-                Author = "Tom example",
+                Title = "Deep Work",
+                Author = "Cal Newport",
                 Language = "English",
             });
-
         }
 
-        /// <inheritdoc/>
+        public static void ResetId()
+        {
+            id = 0;
+        }
+
         public IEnumerable<Book> Get()
         {
-            return this.books;
+            return books;
         }
 
-        /// <inheritdoc/>
         public Book Get(int id)
         {
-            return this.books.Single(_ => _.Id == id);
+            return books.Single(_ => _.Id == id);
         }
 
-        /// <inheritdoc/>
         public void Post(Book value)
         {
-            int id = CountMemory.GetNewId();
-            value.Id = id;
-            this.books.Add(value);
+            int previousId = books[books.Count - 1].Id;
+            value.Id = previousId + 1;
+            books.Add(value);
         }
 
-        // PUT api/<BooksController>/5
-
-        /// <inheritdoc/>
         public void Put(int id, Book value)
         {
-            var index = this.books.FindIndex(book => book.Id == id);
-            this.books[index] = value;
+            if (id == value.Id)
+            {
+                books[id - 1] = value;
+            }
         }
 
-        // DELETE api/<BooksController>/5
-
-        /// <inheritdoc/>
         public void Delete(int id)
         {
-            this.books.Remove(this.Get(id));
-        }
-    }
-
-    public static class CountMemory
-    {
-        public static int count = 2;
-
-        internal static int GetNewId()
-        {
-            return ++count;
+            books.Remove(Get(id));
         }
     }
 }
