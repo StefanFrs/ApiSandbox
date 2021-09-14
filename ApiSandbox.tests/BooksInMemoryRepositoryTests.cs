@@ -11,13 +11,13 @@ using ApiSandbox.Models;
 
 namespace ApiSandbox.tests
 {
-    public class BooksServiceTest
+    public class BooksInMemoryRepositoryTests
     {
         [Fact]
         public static void ShouldHaveLondonCoordinates()
         {
             // Assume
-            var booksService = new BooksService();
+            var booksService = new BooksInMemoryRepository();
 
             // Act
             booksService.Post(new Book

@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace ApiSandbox
 {
-    public class BooksService : IBooksService
+    public class BooksInMemoryRepository : IBooksRepository
     {
         private List<Book> books;
 
-        public BooksService()
+        public BooksInMemoryRepository()
         {
             this.books = new List<Book>();
             this.books.Add(new Book
