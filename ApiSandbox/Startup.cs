@@ -37,8 +37,7 @@ namespace ApiSandbox
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDatabaseDeveloperPageExceptionFilter();
 
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+            
             services.AddRazorPages();
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -49,6 +48,7 @@ namespace ApiSandbox
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 c.IncludeXmlComments(xmlPath, includeControllerXmlComments: true);
             });
+            services.AddSignalR();
             services.AddScoped<IBooksRepository, DbBooksRepository>();
         }
 
@@ -83,11 +83,13 @@ namespace ApiSandbox
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
+              
 				endpoints.MapControllerRoute(  
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
+                endpoints.MapControllers();
+                endpoints.MapHub<MessageHub>("/messagehub");
             });
         }
     }
