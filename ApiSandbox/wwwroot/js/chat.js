@@ -1,4 +1,4 @@
-﻿/ ~/js / chat.js
+﻿// ~/js/chat.js
 "use strict";
 
 

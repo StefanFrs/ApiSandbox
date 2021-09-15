@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 
-namespace ApiSandbox.Pages.Shared
+namespace AspNetSandbox.Pages.Shared
 {
     /// <summary>Shows details about a book.</summary>
     public class DetailsModel : PageModel

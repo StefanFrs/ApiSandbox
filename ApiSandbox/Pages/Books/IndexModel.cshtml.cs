@@ -4,7 +4,7 @@ using ApiSandbox.Models;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 
-namespace ApiSandbox.Pages.Shared
+namespace AspNetSandbox.Pages.Shared
 {
     /// <summary>Model for main dashboard of books.</summary>
     public class IndexModel : PageModel
