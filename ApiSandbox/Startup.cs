@@ -5,7 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using ApiSandbox.Data;
-using AspNetSandbox.Services;
+using ApiSandbox.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -70,16 +70,19 @@ namespace ApiSandbox
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
-           
-            var defaultFilesOptions = new DefaultFilesOptions();
-            defaultFilesOptions.DefaultFileNames = new List<string>();
-            defaultFilesOptions.DefaultFileNames.Add("index.html");
 
-            app.UseDefaultFiles(defaultFilesOptions);
+            app.UseHttpsRedirection();
+
+            app.UseDefaultFiles(new DefaultFilesOptions
+            {
+                DefaultFileNames = new List<string> { "index.html" },
+            });
+
             app.UseStaticFiles();
+
             app.UseRouting();
 
- 			app.UseAuthentication();
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

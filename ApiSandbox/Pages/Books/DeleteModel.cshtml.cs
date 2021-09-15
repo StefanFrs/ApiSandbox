@@ -1,17 +1,17 @@
 ﻿using System.Threading.Tasks;
-using AspNetSandbox.Models;
+using ApiSandbox.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 
-namespace AspNetSandbox.Pages.Shared
+namespace ApiSandbox.Pages.Shared
 {
     /// <summary>Deletes books.</summary>
     public class DeleteModel : PageModel
     {
-        private readonly AspNetSandbox.Data.ApplicationDbContext context;
+        private readonly ApiSandbox.Data.ApplicationDbContext context;
 
-        public DeleteModel(AspNetSandbox.Data.ApplicationDbContext context)
+        public DeleteModel(ApiSandbox.Data.ApplicationDbContext context)
         {
             this.context = context;
         }

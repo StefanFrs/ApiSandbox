@@ -1,16 +1,16 @@
 ﻿using System.Threading.Tasks;
-using AspNetSandbox.Models;
+using ApiSandbox.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace AspNetSandbox.Pages.Shared
+namespace ApiSandbox.Pages.Shared
 {
     /// <summary>Creates new books to add to our data.</summary>
     public class CreateModel : PageModel
     {
-        private readonly AspNetSandbox.Data.ApplicationDbContext context;
+        private readonly ApiSandbox.Data.ApplicationDbContext context;
 
-        public CreateModel(AspNetSandbox.Data.ApplicationDbContext context)
+        public CreateModel(ApiSandbox.Data.ApplicationDbContext context)
         {
             this.context = context;
         }

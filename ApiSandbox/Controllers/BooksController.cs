@@ -10,7 +10,7 @@ using ApiSandbox.DTOs;
 using AutoMapper;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-namespace AspNetSandBox.Controllers
+namespace ApiSandbox.Controllers
 {
     /// <summary>BooksController .
     /// Exposes api CRUD operations for books.</summary>

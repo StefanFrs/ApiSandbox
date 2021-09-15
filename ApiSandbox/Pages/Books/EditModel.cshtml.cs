@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 
-namespace AspNetSandbox.Pages.Shared
+namespace ApiSandbox.Pages.Shared
 {
     /// <summary>Provides the ability to edit book data.</summary>
     public class EditModel : PageModel

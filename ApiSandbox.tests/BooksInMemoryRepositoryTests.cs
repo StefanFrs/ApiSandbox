@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AspNetSandbox;
-using AspNetSandbox.Controllers;
+using ApiSandbox;
+using ApiSandbox.Controllers;
 using System.IO;
 using Xunit;
 using ApiSandbox.Models;
-using AspNetSandbox.Services;
+using ApiSandbox.Services;
 
 namespace ApiSandbox.tests
 {

@@ -7,7 +7,7 @@ using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Linq;
 using RestSharp;
 
-namespace AspNetSandbox.Controllers
+namespace ApiSandbox.Controllers
 {
     /// <summary>
     /// Controller that allows us to get_weather forecast.

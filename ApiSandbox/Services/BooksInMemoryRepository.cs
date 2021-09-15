@@ -3,7 +3,7 @@ using ApiSandbox.Models;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace AspNetSandbox.Services
+namespace ApiSandbox.Services
 {
     public class BooksInMemoryRepository : IBooksRepository
     {

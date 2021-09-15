@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace AspNetSandbox.Services
+namespace ApiSandbox.Services
 {
     public class DbBooksRepository : IBooksRepository
     {
