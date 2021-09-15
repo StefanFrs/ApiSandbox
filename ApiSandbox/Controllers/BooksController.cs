@@ -6,6 +6,8 @@ using ApiSandbox.Models;
 using ApiSandbox.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using ApiSandbox.DTOs;
+using AutoMapper;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 namespace AspNetSandBox.Controllers
@@ -17,11 +19,14 @@ namespace AspNetSandBox.Controllers
     public class BooksController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
+        private readonly IMapper mapper;
 
         /// <summary>Initializes a new instance of the <see cref="BooksController" /> class.</summary>
-        public BooksController(ApplicationDbContext context)
+        public BooksController(ApplicationDbContext context, IMapper mapper)
         {
+            
             _context = context;
+            this.mapper = mapper;
         }
 
         // GET: api/<ValuesController>
@@ -57,12 +62,13 @@ namespace AspNetSandBox.Controllers
         // POST api/<ValuesController>
 
         /// <summary>Posts the specified book.</summary>
-        /// <param name="book">The value.</param>
+        /// <param name="bookDto">The value.</param>
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] Book book)
+        public async Task<IActionResult> Post([FromBody] CreateBookDto bookDto)
         {
             if (ModelState.IsValid)
             {
+                Book book = mapper.Map<Book>(bookDto);
                 _context.Add(book);
                 await _context.SaveChangesAsync();
                 return Ok();

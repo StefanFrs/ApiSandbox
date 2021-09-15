@@ -37,7 +37,8 @@ namespace ApiSandbox
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDatabaseDeveloperPageExceptionFilter();
 
-            
+            services.AddAutoMapper(
+                AppDomain.CurrentDomain.GetAssemblies());
             services.AddRazorPages();
             services.AddControllers();
             services.AddSwaggerGen(c =>
