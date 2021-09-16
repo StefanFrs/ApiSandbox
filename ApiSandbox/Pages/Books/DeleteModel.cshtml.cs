@@ -1,7 +1,9 @@
 ﻿using System.Threading.Tasks;
 using ApiSandbox.Models;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
 
 namespace ApiSandbox.Pages.Shared
@@ -10,10 +12,14 @@ namespace ApiSandbox.Pages.Shared
     public class DeleteModel : PageModel
     {
         private readonly ApiSandbox.Data.ApplicationDbContext context;
+        private readonly IHubContext<MessageHub> hubContext;
+        private readonly IMapper mapper;
 
-        public DeleteModel(ApiSandbox.Data.ApplicationDbContext context)
+        public DeleteModel(ApiSandbox.Data.ApplicationDbContext context, IHubContext<MessageHub> hubContext, IMapper mapper)
         {
             this.context = context;
+            this.hubContext = hubContext;
+            this.mapper = mapper;
         }
 
         [BindProperty]
@@ -48,6 +54,7 @@ namespace ApiSandbox.Pages.Shared
             if (Book != null)
             {
                 this.context.Book.Remove(Book);
+                await hubContext.Clients.All.SendAsync("DeletedBook", Book);
                 await this.context.SaveChangesAsync();
             }
 

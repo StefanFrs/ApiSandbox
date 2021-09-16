@@ -1,7 +1,9 @@
 ﻿using System.Threading.Tasks;
 using ApiSandbox.Models;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.SignalR;
 
 namespace ApiSandbox.Pages.Shared
 {
@@ -9,10 +11,14 @@ namespace ApiSandbox.Pages.Shared
     public class CreateModel : PageModel
     {
         private readonly ApiSandbox.Data.ApplicationDbContext context;
+        private readonly IHubContext<MessageHub> hubContext;
+        private readonly IMapper mapper;
 
-        public CreateModel(ApiSandbox.Data.ApplicationDbContext context)
+        public CreateModel(ApiSandbox.Data.ApplicationDbContext context, IHubContext<MessageHub> hubContext, IMapper mapper)
         {
             this.context = context;
+            this.hubContext = hubContext;
+            this.mapper = mapper;
         }
 
         [BindProperty]
@@ -31,8 +37,10 @@ namespace ApiSandbox.Pages.Shared
                 return Page();
             }
 
-            this.context.Book.Add(Book);
+            Book book = mapper.Map<Book>(Book);
+            context.Book.Add(book);
             await this.context.SaveChangesAsync();
+            await hubContext.Clients.All.SendAsync("AddedBook", Book);
 
             return RedirectToPage("./Index");
         }

@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace ApiSandbox
 {
-    internal class MessageHub : Hub
+    public class MessageHub : Hub
     {
         public async Task SendMessage(string user, string message)
         {
