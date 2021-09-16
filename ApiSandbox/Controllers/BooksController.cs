@@ -11,7 +11,7 @@ using ApiSandbox.DTOs;
 using AutoMapper;
 using ApiSandbox;
 
-namespace AspNetSandbox.Controllers
+namespace ApiSandbox.Controllers
 {
     /// <summary>
     ///   <br />

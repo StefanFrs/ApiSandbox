@@ -14,7 +14,7 @@ namespace ApiSandbox.Profiles
         {
             CreateMap<CreateBookDto, Book>();
 
-            //here you have to insert another map
+            CreateMap<Book, ReadBookDto>();
         }
     }
 }
