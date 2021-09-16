@@ -2,67 +2,64 @@
 using ApiSandbox.Models;
 using System.Collections.Generic;
 using System.Linq;
+using ApiSandbox.Models;
 
 namespace ApiSandbox.Services
 {
     public class BooksInMemoryRepository : IBooksRepository
     {
-        private static int id;
-        private List<Book> books;
+        private readonly List<Book> books;
+        private int idCounter = 1;
 
         public BooksInMemoryRepository()
         {
             books = new List<Book>();
             books.Add(new Book
             {
-                Id = 1,
-                Title = "Sapiens - o scurta istorie a omenirii",
-                Author = "Yuval Noah Harari",
-                Language = "Romanian",
+                Id = idCounter++,
+                Title = "Game of Thrones",
+                Language = "English",
+                Author = "George R. R. Martin",
             });
 
             books.Add(new Book
             {
-                Id = 2,
+                Id = idCounter++,
                 Title = "Deep Work",
-                Author = "Cal Newport",
                 Language = "English",
+                Author = "Cal Newport",
             });
         }
 
-        public static void ResetId()
-        {
-            id = 0;
-        }
-
-        public IEnumerable<Book> Get()
+        public IEnumerable<Book> GetBooks()
         {
             return books;
         }
 
-        public Book Get(int id)
+        public Book GetBook(int id)
         {
             return books.Single(_ => _.Id == id);
         }
 
-        public void Post(Book value)
+        public void AddBook(Book value)
         {
-            int previousId = books[books.Count - 1].Id;
-            value.Id = previousId + 1;
+            value.Id = idCounter++;
             books.Add(value);
         }
 
-        public void Put(int id, Book value)
+        public void UpdateBook(int id, Book value)
         {
-            if (id == value.Id)
+            value.Id = id;
+            var toUpdateBookIndex = books.FindIndex(_ => _.Id == id);
+            if (GetBook(id) != null)
             {
-                books[id - 1] = value;
+                books[toUpdateBookIndex] = value;
             }
         }
 
-        public void Delete(int id)
+        public void DeleteBook(int id)
         {
-            books.Remove(Get(id));
+            books.Remove(GetBook(id));
         }
     }
 }

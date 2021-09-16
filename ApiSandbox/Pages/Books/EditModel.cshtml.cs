@@ -1,8 +1,11 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
+using ApiSandbox;
 using ApiSandbox.Models;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
 
 namespace AspNetSandbox.Pages.Shared
@@ -11,10 +14,14 @@ namespace AspNetSandbox.Pages.Shared
     public class EditModel : PageModel
     {
         private readonly ApiSandbox.Data.ApplicationDbContext context;
+        private readonly IHubContext<MessageHub> hubContext;
+        private readonly IMapper mapper;
 
         public EditModel(ApiSandbox.Data.ApplicationDbContext context)
         {
             this.context = context;
+            this.hubContext = hubContext;
+            this.mapper = mapper;
         }
 
         [BindProperty]
@@ -51,6 +58,7 @@ namespace AspNetSandbox.Pages.Shared
             try
             {
                 await this.context.SaveChangesAsync();
+                await hubContext.Clients.All.SendAsync("EditedBook", Book);
             }
             catch (DbUpdateConcurrencyException)
             {

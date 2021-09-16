@@ -5,14 +5,14 @@ namespace ApiSandbox
 {
     public interface IBooksRepository
     {
-        void Delete(int id);
+        void DeleteBook(int id);
 
-        IEnumerable<Book> Get();
+        Book GetBook(int id);
 
-        Book Get(int id);
+        void AddBook(Book value);
 
-        void Post(Book value);
+        void UpdateBook(int id, Book value);
 
-        void Put(int id, Book value);
+        IEnumerable<Book> GetBooks();
     }
 }

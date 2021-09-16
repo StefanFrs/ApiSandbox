@@ -13,6 +13,8 @@ namespace ApiSandbox.Profiles
         public BookProfile()
         {
             CreateMap<CreateBookDto, Book>();
+
+            //here you have to insert another map
         }
     }
 }

@@ -50,7 +50,7 @@ namespace ApiSandbox
                 c.IncludeXmlComments(xmlPath, includeControllerXmlComments: true);
             });
             services.AddSignalR();
-            services.AddScoped<IBooksRepository, DbBooksRepository>();
+            services.AddScoped<IBooksRepository, DbBookRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

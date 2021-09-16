@@ -8,44 +8,42 @@ using System.Threading.Tasks;
 
 namespace ApiSandbox.Services
 {
-    public class DbBooksRepository : IBooksRepository
+    public class DbBookRepository : IBooksRepository
     {
         private readonly ApplicationDbContext context;
 
-        public DbBooksRepository(ApplicationDbContext context)
+        public DbBookRepository(ApplicationDbContext context)
         {
             this.context = context;
         }
-
-        public void Post(Book book)
+        public void AddBook(Book book)
         {
-            context.Add(book);
-            context.SaveChanges();
+            this.context.Add(book);
+            this.context.SaveChangesAsync();
         }
 
-        public void Delete(int id)
+        public void DeleteBook(int id)
         {
-            var book = context.Book.Find(id);
-            context.Book.Remove(book);
-            context.SaveChanges();
+            var book = this.context.Book.Find(id);
+            this.context.Book.Remove(book);
+            this.context.SaveChangesAsync();
         }
 
-        public IEnumerable<Book> Get()
+        public Book GetBook(int id)
         {
-            return context.Book.ToList();
-        }
-
-        public Book Get(int id)
-        {
-            var book = context.Book
-               .FirstOrDefault(m => m.Id == id);
+            var book = this.context.Book.FirstOrDefault(m => m.Id == id);
             return book;
         }
 
-        public void Put(int id, Book book)
+        public IEnumerable<Book> GetBooks()
         {
-            context.Update(book);
-            context.SaveChanges();
+            return this.context.Book.ToList();
+        }
+
+        public void UpdateBook(int id, Book book)
+        {
+            this.context.Update(book);
+            this.context.SaveChanges();
         }
     }
 }

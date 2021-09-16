@@ -10,34 +10,51 @@ using Xunit;
 using ApiSandbox.Models;
 using ApiSandbox.Services;
 
-namespace ApiSandbox.tests
+namespace ApiSandbox.Data
 {
     public class BooksInMemoryRepositoryTests
     {
         [Fact]
-        public static void ShouldHaveLondonCoordinates()
+        public void BooksServiceAddDeleteTest()
         {
             // Assume
             var booksService = new BooksInMemoryRepository();
 
             // Act
-            booksService.Post(new Book
+            booksService.AddBook(new Book
             {
-                Title = "Psyho ABC",
-                Author = "John",
-                Language = "Romanian",
+                Title = "Harry Potter and the Goblet of Fire",
+                Author = "JK Rowling",
+                Language = "English",
             });
-
-            booksService.Delete(2);
-            booksService.Post(new Book
+            booksService.DeleteBook(2);
+            booksService.AddBook(new Book
             {
-                Title = "The art of not giving a f..",
-                Author = "Tom example",
+                Title = "The Happiest Man on Earth",
+                Author = "Eddie Jaku",
                 Language = "English",
             });
 
             // Assert
-            Assert.Equal("Psyho ABC", booksService.Get(3).Title);
+            Assert.Equal("Harry Potter and the Goblet of Fire", booksService.GetBook(3).Title);
+        }
+
+        [Fact]
+        public void BookServiceUpdateTest()
+        {
+            // Assume
+            var booksService = new BooksInMemoryRepository();
+
+            // Act
+            booksService.UpdateBook(2, new Book
+            {
+                Title = "Funky Business",
+                Author = "Jonas Ridderstrale",
+                Language = "English",
+            });
+
+            // Assert
+            Assert.Equal("Funky Business", booksService.GetBook(2).Title);
         }
     }
 }
