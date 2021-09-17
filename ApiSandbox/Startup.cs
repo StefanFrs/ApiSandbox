@@ -63,7 +63,10 @@ namespace ApiSandbox
         }
         public static string ConvertConnectionString(string connectionString)
         {
-            throw new NotImplementedException();
+            Uri uri = new(connectionString);
+            string userId = uri.UserInfo.Split(':')[0];
+            string password = uri.UserInfo.Split(':')[1];
+            return $"Database={uri.AbsolutePath.TrimStart('/')}; Host={uri.Host}; Port={uri.Port}; User Id={userId}; Password={password}; Ssl Mode=Require;Trust Server Certificate=true ";
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

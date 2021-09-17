@@ -20,7 +20,7 @@ namespace ApiSandbox.tests
             string convertedConnectionString = Startup.ConvertConnectionString(databaseURL);
             //Assert
 
-            Assert.Equal("Database=d4tmblunu1tedm; Host=ec2-54-155-61-133.eu-west-1.compute.amazonaws.com; Port=5432; User Id=ycxwwebyyrkpdm; Password=6cabfa0ba77e19f28bbb0da3e572b207fedd69ba4b12a21d915f0c2af48b8d90; Ssl Mode=Require;Trust Server Certificate=true", convertedConnectionString);
+            Assert.Equal("Database=d4tmblunu1tedm; Host=ec2-54-155-61-133.eu-west-1.compute.amazonaws.com; Port=5432; User Id=ycxwwebyyrkpdm; Password=6cabfa0ba77e19f28bbb0da3e572b207fedd69ba4b12a21d915f0c2af48b8d90; Ssl Mode=Require;Trust Server Certificate=true ", convertedConnectionString);
         }
     }
 }
