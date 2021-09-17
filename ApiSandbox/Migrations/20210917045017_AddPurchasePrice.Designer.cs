@@ -10,7 +10,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace ApiSandbox.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210916091604_AddPurchasePrice")]
+    [Migration("20210917045017_AddPurchasePrice")]
     partial class AddPurchasePrice
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -34,7 +34,7 @@ namespace ApiSandbox.Migrations
                     b.Property<string>("Language")
                         .HasColumnType("text");
 
-                    b.Property<decimal>("Price")
+                    b.Property<decimal>("PurchasePrice")
                         .HasColumnType("numeric");
 
                     b.Property<string>("Title")

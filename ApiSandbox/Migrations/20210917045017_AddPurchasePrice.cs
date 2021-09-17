@@ -7,11 +7,11 @@ namespace ApiSandbox.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<decimal>(
-                name: "PurchasePrice",
-                table: "Book",
-                type: "numeric",
-                nullable: false,
-                defaultValue: 0m);
+                 name: "PurchasePrice",
+                 table: "Book",
+                 type: "numeric",
+                 nullable: false,
+                 defaultValue: 0m);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

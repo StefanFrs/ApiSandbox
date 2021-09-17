@@ -32,7 +32,7 @@ namespace ApiSandbox.Migrations
                     b.Property<string>("Language")
                         .HasColumnType("text");
 
-                    b.Property<decimal>("Price")
+                    b.Property<decimal>("PurchasePrice")
                         .HasColumnType("numeric");
 
                     b.Property<string>("Title")
