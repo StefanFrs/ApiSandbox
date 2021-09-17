@@ -33,8 +33,8 @@ namespace ApiSandbox
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
-               options.UseNpgsql(GetConnectionString()));
-            Configuration.GetConnectionString("DefaultConnection"));
+                 options.UseNpgsql(GetConnectionString()));
+            Configuration.GetConnectionString("DefaultConnection");
             services.AddDatabaseDeveloperPageExceptionFilter();
 
             services.AddAutoMapper(
