@@ -33,9 +33,11 @@ namespace ApiSandbox.Controllers
 
         // GET: api/<BooksController>
         [HttpGet]
-        public IActionResult Get()
+        public async Task<IActionResult> GetBooks()
         {
-            return Ok(repository.GetBooks());
+            var bookList = repository.GetBooks();
+            var readBookList = mapper.Map<IEnumerable<ReadBookDto>>(bookList); 
+            return Ok(readBookList);
         }
 
         // GET api/<BooksController>/5
@@ -107,7 +109,7 @@ namespace ApiSandbox.Controllers
         {
             Book book = repository.GetBook(id);
             hubContext.Clients.All.SendAsync("DeletedBook", book);
-            repository.DeleteBook(id);
+            repository.DeleteBook(id); 
             return Ok();
         }
     }
