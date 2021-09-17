@@ -32,9 +32,9 @@ namespace ApiSandbox
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-        	 services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseNpgsql(
-                    Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<ApplicationDbContext>(options =>
+               options.UseNpgsql(GetConnectionString()));
+            Configuration.GetConnectionString("DefaultConnection"));
             services.AddDatabaseDeveloperPageExceptionFilter();
 
             services.AddAutoMapper(
@@ -51,6 +51,19 @@ namespace ApiSandbox
             });
             services.AddSignalR();
             services.AddScoped<IBooksRepository, DbBookRepository>();
+        }
+        private string GetConnectionString()
+        {
+           var connectionString = Environment.GetEnvironmentVariable("DATABASE_URL");
+           if(connectionString != null)
+            {
+                return ConvertConnectionString(connectionString);
+            }
+            return Configuration.GetConnectionString("DefaultConnection") ;
+        }
+        public static string ConvertConnectionString(string connectionString)
+        {
+            throw new NotImplementedException();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

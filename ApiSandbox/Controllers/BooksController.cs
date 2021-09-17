@@ -36,7 +36,7 @@ namespace ApiSandbox.Controllers
         public async Task<IActionResult> GetBooks()
         {
             var bookList = repository.GetBooks();
-            var readBookList = mapper.Map<IEnumerable<ReadBookDto>>(bookList); 
+            var readBookList = mapper.Map<IEnumerable<ReadBookDto>>(bookList);
             return Ok(readBookList);
         }
 
