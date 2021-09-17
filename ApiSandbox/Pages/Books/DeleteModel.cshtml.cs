@@ -54,8 +54,8 @@ namespace ApiSandbox.Pages.Shared
             if (Book != null)
             {
                 this.context.Book.Remove(Book);
-                await hubContext.Clients.All.SendAsync("DeletedBook", Book);
                 await this.context.SaveChangesAsync();
+                await hubContext.Clients.All.SendAsync("DeletedBook", Book);
             }
 
             return RedirectToPage("./Index");

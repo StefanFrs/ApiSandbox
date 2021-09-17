@@ -17,7 +17,7 @@ namespace AspNetSandbox.Pages.Shared
         private readonly IHubContext<MessageHub> hubContext;
         private readonly IMapper mapper;
 
-        public EditModel(ApiSandbox.Data.ApplicationDbContext context)
+        public EditModel(ApiSandbox.Data.ApplicationDbContext context, IHubContext<MessageHub> hubContext, IMapper mapper)
         {
             this.context = context;
             this.hubContext = hubContext;
