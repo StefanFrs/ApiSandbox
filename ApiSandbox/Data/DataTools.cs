@@ -18,9 +18,9 @@ namespace ApiSandbox.Data
                     Console.WriteLine("The books are there!");
                 }
                 else
-{
-    Console.WriteLine("No books.");
-}
+                {
+                     Console.WriteLine("No books.");
+                }
             }
          }
       }
