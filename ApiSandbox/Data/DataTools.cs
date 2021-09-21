@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using ApiSandbox.Models;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ namespace ApiSandbox.Data
 {
     public static class DataTools
     {
-        public static void SeedData(IApplicationBuilder app) { 
+        public static void SeedData(this IApplicationBuilder app) { 
          using (var serviceScope = app.ApplicationServices.CreateScope())
             {
                 var applicationDbContext = serviceScope.ServiceProvider.GetService<ApplicationDbContext>();
@@ -19,7 +20,11 @@ namespace ApiSandbox.Data
                 }
                 else
                 {
-                     Console.WriteLine("No books.");
+                    var book = new Book();
+                    applicationDbContext.Add(book);
+                    var book2 = new Book();
+                    applicationDbContext.Add(book2);
+                    applicationDbContext.SaveChanges();
                 }
             }
          }
