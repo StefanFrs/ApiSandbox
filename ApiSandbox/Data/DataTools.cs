@@ -20,9 +20,18 @@ namespace ApiSandbox.Data
                 }
                 else
                 {
+                    Console.WriteLine("No books!");
                     var book = new Book();
-                    applicationDbContext.Add(book);
                     var book2 = new Book();
+                    book.Author = "Autor1";
+                    book.Id = 1;
+                    book.Title = "Title1";
+                    book.Language = "Eng";
+                    book2.Author = "Autor2";
+                    book2.Id = 2;
+                    book2.Title = "Title2";
+                    book2.Language = "RO";
+                    applicationDbContext.Add(book);
                     applicationDbContext.Add(book2);
                     applicationDbContext.SaveChanges();
                 }

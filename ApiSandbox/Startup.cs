@@ -60,6 +60,7 @@ namespace ApiSandbox
             {
                 return ConvertConnectionString(connectionString);
             }
+
             return Configuration.GetConnectionString("DefaultConnection") ;
         }
         public static string ConvertConnectionString(string connectionString)
@@ -95,9 +96,6 @@ namespace ApiSandbox
             });
 
             app.UseStaticFiles();
-
-           
-
             app.UseRouting();
 
             app.UseAuthentication();
