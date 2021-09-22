@@ -1,7 +1,7 @@
 ﻿using ApiSandbox.Models;
 using System.Collections.Generic;
 
-namespace ApiSandbox
+namespace ApiSandbox.Services
 {
     public interface IBooksRepository
     {

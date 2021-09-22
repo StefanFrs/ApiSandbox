@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.SignalR;
 using ApiSandbox.DTOs;
 using AutoMapper;
 using ApiSandbox;
+using ApiSandbox.Services;
 
 namespace ApiSandbox.Controllers
 {
