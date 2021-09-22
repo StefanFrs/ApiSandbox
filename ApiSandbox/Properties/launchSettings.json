@@ -19,7 +19,7 @@
     },
     "ApiSandbox": {
       "commandName": "Project",
-      "commandLineArgs": "-v",
+      "commandLineArgs": "-v- c \"SqlServer\"",
       "launchBrowser": true,
       "launchUrl": "swagger",
       "environmentVariables": {

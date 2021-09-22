@@ -14,13 +14,21 @@ namespace ApiSandbox
     {
         public class Options
         {
-            [Option('v', "verbose", Required = false, HelpText = "Set output to verbose messages.")]
+            [Option('v', "Verbose", Required = false, HelpText = "Set output to verbose messages.")]
             public bool Verbose { get; set; }
+
+            public bool ConnectionString { get; internal set; }
+        }
+
+        public class ConnectionOptions
+        {
+            [Option('c', "Connection", Required = false, HelpText = "Set the connection")]
+            public bool ConnectionString { get; set; }
         }
 
         public static int Main(string[] args)
         {
-            Parser.Default.ParseArguments<Options>(args)
+            Parser.Default.ParseArguments<Options, ConnectionOptions>(args)
                   .WithParsed<Options>(o =>
                   {
                       if (o.Verbose)
@@ -33,7 +41,20 @@ namespace ApiSandbox
                           Console.WriteLine($"Current Arguments: -v {o.Verbose}");
                           Console.WriteLine("Quick Start Example!");
                       }
+
+                      Console.WriteLine(o.ConnectionString);
                   });
+                  //.WithParsed<ConnectionOptions>(c =>
+                  //  {
+                  //      if (o.Connection.ToString == "SqlServer")
+                  //      {
+                  //          Console.WriteLine(o.Connection);
+                  //      }
+                  //      else
+                  //      {
+                  //          Console.WriteLine("No SQL connection!");
+                  //      }
+                  //  });
             if (args.Length > 0)
             {
                 Console.WriteLine($"There are : {args.Length} args." );
@@ -42,6 +63,7 @@ namespace ApiSandbox
             {
                 Console.WriteLine("No arguments.");
             }
+
             CreateHostBuilder(args).Build().Run();
             return 0;
         }
