@@ -1,6 +1,17 @@
-﻿## How to run in Docker from the commandline
+﻿# Stefan sandbox project for BE
 
-Build in container
+name | value
+--- | ---
+language | C#
+database | postgress
+deployed | https://api-book-app.herokuapp.com/
+
+
+## How to run in Docker from the commandline
+
+Navigate to [ApiSandbox](ApiSandbox) directory
+
+## Build in container
 ```
 docker build -t web_stefan .
 ```
