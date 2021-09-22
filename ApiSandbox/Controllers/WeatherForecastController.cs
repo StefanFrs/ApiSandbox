@@ -91,8 +91,8 @@ namespace ApiSandbox.Controllers
                 var lon = jsonCity["coord"]["lon"];
                 return new WeatherForecast
                 {
-                   latitude = lat,
-                   longitude = lon,
+                   Latitude = lat,
+                   Longitude = lon,
                    name = nameCity,
                 };
             })

@@ -54,3 +54,11 @@ Release the container
 ```
 heroku container:release -a api-book-app web
 ```
+
+# Swagger interface
+
+![GitHub Logo](/Assets/swagger-screenshot.png)
+
+# Books interface
+
+![GitHub Logo](/Assets/books-screenshot.png)

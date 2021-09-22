@@ -2,3 +2,11 @@
 
 # SA1604: Element documentation should have summary
 dotnet_diagnostic.SA1604.severity = none
+
+dotnet_diagnostic.SA1101.severity = none
+
+dotnet_diagnostic.SA1200.severity = none
+
+dotnet_diagnostic.SA1633.severity = none
+
+dotnet_diagnostic.SA1600.severity = none

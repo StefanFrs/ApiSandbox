@@ -42,6 +42,7 @@ namespace ApiSandbox.tests
 }
 ");
         }
+
         public void ReadFilesTest()
         {
             using (var fs = File.OpenRead("newSettings.json"))
@@ -55,8 +56,6 @@ namespace ApiSandbox.tests
                     Console.WriteLine(returnedstring);
                 }
             }
-
         }
-
     }
 }

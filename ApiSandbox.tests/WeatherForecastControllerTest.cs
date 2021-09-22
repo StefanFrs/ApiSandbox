@@ -1,7 +1,7 @@
-using ApiSandbox;
-using ApiSandbox.Controllers;
 using System;
 using System.IO;
+using ApiSandbox;
+using ApiSandbox.Controllers;
 using Xunit;
 
 namespace ApiSandbox.Tests
@@ -25,7 +25,7 @@ namespace ApiSandbox.Tests
             var weatherForecastForTomorrow = ((WeatherForecast[])output)[0];
             Assert.Equal("Clear", weatherForecastForTomorrow.Summary);
             Assert.Equal(19, ((WeatherForecast[])output)[0].TemperatureC);
-            Assert.Equal(new DateTime(2021,9,3), weatherForecastForTomorrow.Date);
+            Assert.Equal(new DateTime(2021, 9, 3), weatherForecastForTomorrow.Date);
         }
 
         [Fact]

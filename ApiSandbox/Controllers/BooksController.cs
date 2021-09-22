@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using ApiSandbox.Models;
-using ApiSandbox.Data;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.SignalR;
-using ApiSandbox.DTOs;
-using AutoMapper;
 using ApiSandbox;
+using ApiSandbox.Data;
+using ApiSandbox.DTOs;
+using ApiSandbox.Models;
 using ApiSandbox.Services;
+using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
+using Microsoft.EntityFrameworkCore;
 
 namespace ApiSandbox.Controllers
 {
@@ -33,6 +33,7 @@ namespace ApiSandbox.Controllers
         }
 
         // GET: api/<BooksController>
+
         /// <summary>
         ///
         /// </summary>
@@ -109,6 +110,7 @@ namespace ApiSandbox.Controllers
         /// Deletes a Book object by id.
         /// </summary>
         /// <param name="id">The identifier.</param>
+        /// <returns>Delete</returns>
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {

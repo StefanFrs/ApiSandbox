@@ -13,9 +13,9 @@ namespace ApiSandbox
 
         public string Summary { get; set; }
 
-        public JToken latitude { get; internal set; }
+        public JToken Latitude { get; internal set; }
 
-        public JToken longitude { get; internal set; }
+        public JToken Longitude { get; internal set; }
 
         public JToken name { get; internal set; }
     }

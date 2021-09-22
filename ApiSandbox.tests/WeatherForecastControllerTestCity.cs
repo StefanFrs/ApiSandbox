@@ -1,7 +1,7 @@
-using ApiSandbox;
-using ApiSandbox.Controllers;
 using System;
 using System.IO;
+using ApiSandbox;
+using ApiSandbox.Controllers;
 using Xunit;
 
 namespace ApiSandbox.Tests
@@ -20,8 +20,8 @@ namespace ApiSandbox.Tests
             var weatherForecastForTomorrow = ((WeatherForecast[])output)[0];
 
             // Assert
-            Assert.Equal("13.4113", weatherForecastForTomorrow.longitude);
-            Assert.Equal("52.5234", weatherForecastForTomorrow.latitude);
+            Assert.Equal("13.4113", weatherForecastForTomorrow.Longitude);
+            Assert.Equal("52.5234", weatherForecastForTomorrow.Latitude);
 
             // Assert.Equal(19, ((WeatherForecast[])output)[0].TemperatureC);
         }
