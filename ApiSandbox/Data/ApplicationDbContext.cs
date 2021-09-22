@@ -13,6 +13,7 @@ namespace ApiSandbox.Data
             : base(options)
         {
         }
+
         public DbSet<ApiSandbox.Models.Book> Book { get; set; }
     }
 }

@@ -1,0 +1,4 @@
+﻿[*.cs]
+
+# SA1604: Element documentation should have summary
+dotnet_diagnostic.SA1604.severity = none

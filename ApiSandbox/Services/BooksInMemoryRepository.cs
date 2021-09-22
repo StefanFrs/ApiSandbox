@@ -36,17 +36,20 @@ namespace ApiSandbox.Services
             return books;
         }
 
+        /// <inheritdoc/>
         public Book GetBook(int id)
         {
-            return books.Single(_ => _.Id == id);
+            return this.books.Single(_ => _.Id == id);
         }
 
+        /// <inheritdoc/>
         public void AddBook(Book value)
         {
-            value.Id = idCounter++;
-            books.Add(value);
+            value.Id = this.idCounter++;
+            this.books.Add(value);
         }
 
+        /// <inheritdoc/>
         public void UpdateBook(int id, Book value)
         {
             value.Id = id;

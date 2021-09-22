@@ -16,6 +16,7 @@ namespace ApiSandbox.Services
         {
             this.context = context;
         }
+
         public void AddBook(Book book)
         {
             this.context.Add(book);

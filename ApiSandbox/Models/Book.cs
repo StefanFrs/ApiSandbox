@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace ApiSandbox.Models
 {
+    [DebuggerDisplay("Title = {Title} Id = {Id}")]
     public class Book
     {
         public int Id { get; set; }

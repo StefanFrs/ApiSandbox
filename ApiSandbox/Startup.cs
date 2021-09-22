@@ -56,16 +56,17 @@ namespace ApiSandbox
         private string GetConnectionString()
         {
            var connectionString = Environment.GetEnvironmentVariable("DATABASE_URL");
-           if(connectionString != null)
+           if (connectionString != null)
             {
                 return ConvertConnectionString(connectionString);
             }
 
-            return Configuration.GetConnectionString("DefaultConnection") ;
+           return Configuration.GetConnectionString("DefaultConnection");
         }
+
         public static string ConvertConnectionString(string connectionString)
         {
-            Uri uri = new(connectionString);
+            Uri uri = new (connectionString);
             string userId = uri.UserInfo.Split(':')[0];
             string password = uri.UserInfo.Split(':')[1];
             return $"Database={uri.AbsolutePath.TrimStart('/')}; Host={uri.Host}; Port={uri.Port}; User Id={userId}; Password={password}; Ssl Mode=Require;Trust Server Certificate=true ";
@@ -102,7 +103,7 @@ namespace ApiSandbox
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
-            { 
+            {
                 endpoints.MapControllerRoute(  
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
