@@ -57,8 +57,8 @@ heroku container:release -a api-book-app web
 
 # Swagger interface
 
-![GitHub Logo](/Assets/swagger-screenshot.png)
+![GitHub Logo](/Assets/swagger-screenshot.PNG)
 
 # Books interface
 
-![GitHub Logo](/Assets/books-screenshot.png)
+![GitHub Logo](/Assets/books-screenshot.PNG)
