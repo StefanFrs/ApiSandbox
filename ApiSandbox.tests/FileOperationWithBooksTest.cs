@@ -42,5 +42,21 @@ namespace ApiSandbox.tests
 }
 ");
         }
+        public void ReadFilesTest()
+        {
+            using (var fs = File.OpenRead("newSettings.json"))
+            {
+                byte[] b = new byte[1024];
+                UTF8Encoding temp = new UTF8Encoding(true);
+
+                while (fs.Read(b, 0, b.Length) > 0)
+                {
+                    var returnedstring = temp.GetString(b);
+                    Console.WriteLine(returnedstring);
+                }
+            }
+
+        }
+
     }
 }
