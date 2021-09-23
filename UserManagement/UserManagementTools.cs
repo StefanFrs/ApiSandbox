@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -11,7 +14,6 @@ namespace UserManagement
         {
             using (var serviceScope = app.ApplicationServices.CreateScope())
             {
-
                 var adminRole = await EnsureRoleCreated(serviceScope.ServiceProvider, "Administrator");
                 var operatorRole = await EnsureRoleCreated(serviceScope.ServiceProvider, "Operator");
             }

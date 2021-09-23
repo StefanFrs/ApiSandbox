@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -11,31 +12,32 @@ using UserManagement.Models;
 
 namespace UserManagement.Controllers
 {
+    [Authorize(Roles = "Administrator")]
     public class UsersController : Controller
     {
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<IdentityUser> userManager;
 
         public UsersController(UserManager<IdentityUser> userManager)
         {
-            _userManager = userManager;
+            this.userManager = userManager;
         }
 
         // GET: Users
         public async Task<IActionResult> Index()
         {
-            var users = await _userManager.Users.ToListAsync();
+            var users = await userManager.Users.ToListAsync();
             return View(users);
         }
 
         // GET: Users/Details/5
-        public async Task<IActionResult> Details(string? id)
+        public async Task<IActionResult> Details(string id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var user = await _userManager.Users
+            var user = await userManager.Users
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (user == null)
             {
@@ -60,21 +62,21 @@ namespace UserManagement.Controllers
         {
             if (ModelState.IsValid)
             {
-                await _userManager.CreateAsync(user);          
+                await userManager.CreateAsync(user);
                 return RedirectToAction(nameof(Index));
             }
             return View(user);
         }
 
         // GET: Users/Edit/5
-        public async Task<IActionResult> Edit(string? id)
+        public async Task<IActionResult> Edit(string id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var user = await _userManager.FindByIdAsync(id);
+            var user = await userManager.FindByIdAsync(id);
             if (user == null)
             {
                 return NotFound();
@@ -98,7 +100,7 @@ namespace UserManagement.Controllers
             {
                 try
                 {
-                    await _userManager.UpdateAsync(user);
+                    await userManager.UpdateAsync(user);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -124,7 +126,7 @@ namespace UserManagement.Controllers
                 return NotFound();
             }
 
-            var user = await _userManager.Users
+            var user = await userManager.Users
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (user == null)
             {
@@ -139,14 +141,14 @@ namespace UserManagement.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
-            var user = await _userManager.FindByIdAsync(id);
-            await _userManager.DeleteAsync(user);
+            var user = await userManager.FindByIdAsync(id);
+            await userManager.DeleteAsync(user);
             return RedirectToAction(nameof(Index));
         }
 
         private bool UserExists(string id)
         {
-            return _userManager.Users.Any(e => e.Id == id);
+            return userManager.Users.Any(e => e.Id == id);
         }
     }
 }
