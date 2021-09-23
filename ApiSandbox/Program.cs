@@ -44,8 +44,7 @@ namespace ApiSandbox
                       }
                       else
                       {
-                          Console.WriteLine($"Current Arguments: -c {o.ConnectionString}");
-                          Console.WriteLine("Quick Start Example!");
+                          Console.WriteLine("Using the default connection.");
                       }
                   });
             if (args.Length > 0)
